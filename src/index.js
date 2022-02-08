@@ -16,18 +16,26 @@ const inputHandler=(e)=>{
     const inputValue=e.target.value.trim();
 
     getCountriesAPI(inputValue).then(data=>{
+
         if(data.length>1){
             data.forEach(item=>{
                 const {name}=item;
-                console.log(name.official)
-
+                console.log(name.official);
             })
             return;
         }
-        const {capital,name, population, languages,flags}=data;
-        // console.dir(`${name}, ${capital}, ${population}, ${languages}, ${flags}`)
-  
-     console.log(length)
+        data.map(item=>{
+            const {capital,name, population, languages,flags}=item;
+            const {official}=name;
+            const{svg}=flags;
+            console.log(population.toLocaleString())
+
+            console.dir(`${official}, ${capital}, ${population.toLocaleString()}, ${Object.values(languages).join(',')}, ${svg}`)
+        })
+ 
+   
+    }).catch(error=>{
+        console.log(error);
     });
 }
 
