@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 
 import { getShortCountriesAPI } from './js/api/countriesApi';
 import { clearContent } from "./js/ClearContent";
-import { countryList } from './js/CountryList';
+import { countryList } from './js/countryList';
 
 
 const ref={
