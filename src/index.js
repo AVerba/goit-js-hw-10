@@ -5,6 +5,7 @@ import debounce from 'lodash.debounce';
 import { getShortCountriesAPI } from './js/api/countriesApi';
 import { clearContent } from "./js/ClearContent";
 import { countryList } from './js/countryList';
+import { countryView } from "./js/countryView";
 
 
 const ref={
@@ -18,6 +19,7 @@ const DEBOUNCE_DELAY = 300;
 const inputHandler=(e)=>{
     const inputValue=e.target.value.trim();
     clearContent(ref.countryListRef);
+    clearContent(ref.countryInfoRef);
 
     getShortCountriesAPI(inputValue).then(data=>{
 
@@ -39,16 +41,20 @@ const inputHandler=(e)=>{
             return;
         }
         if(data.length===1){
+        clearContent(ref.countryListRef);
+        clearContent(ref.countryInfoRef);
         console.log(data)
         console.clear();
-        data.map(item=>{
-            const {capital,name, population, languages,flags}=item;
-            const {official}=name;
-            const{svg}=flags;
-            console.log(population.toLocaleString())
+        ref.countryInfoRef.innerHTML= data.map(item=>countryView(item))
+        // data.map(item=>{
+        //     const {capital,name, population, languages,flags}=item;
+        //     const {official}=name;
+        //     const{svg}=flags;
+        //     console.log(population.toLocaleString())
 
-            console.dir(`${official}, ${capital}, ${population.toLocaleString()}, ${Object.values(languages).join(',')}, ${svg}`)
-        })}
+        //     console.dir(`${official}, ${capital}, ${population.toLocaleString()}, ${Object.values(languages).join(',')}, ${svg}`)
+        // })
+    }
  
    
     }).catch(error=>{
