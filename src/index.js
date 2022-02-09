@@ -3,6 +3,8 @@ import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
 
 import { getShortCountriesAPI } from './js/api/countriesApi';
+import { clearContent } from "./js/api/ClearContent";
+
 
 const ref={
     inputRef: document.querySelector('#search-box'),
@@ -14,10 +16,17 @@ const DEBOUNCE_DELAY = 300;
 
 const inputHandler=(e)=>{
     const inputValue=e.target.value.trim();
+    clearContent(ref.countryListRef);
 
     getShortCountriesAPI(inputValue).then(data=>{
+        if (data.length > 10) {
+            console.clear();
+            Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+            return;
+          }
 
         if(data.length>1){
+            console.clear();
             data.forEach(item=>{
                 const {name}=item;
                 console.log(name.official);
@@ -25,6 +34,7 @@ const inputHandler=(e)=>{
             return;
         }
         console.log(data)
+        console.clear();
         data.map(item=>{
             const {capital,name, population, languages,flags}=item;
             const {official}=name;
@@ -36,7 +46,7 @@ const inputHandler=(e)=>{
  
    
     }).catch(error=>{
-        console.log(error);
+        console.log(error);        
     });
 }
 
