@@ -56,7 +56,11 @@ input:active,
 }
 
 .country-list__item:not(:last-child) {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+.country-list__img {
+  padding-right: 10px;
 }
 
 .country-list__name {

@@ -2,12 +2,13 @@
   padding: 15px 0 0 25px;
 
   &__item:not(:last-child) {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
   }
 
   // .country-list__img
 
   &__img {
+    padding-right: 10px;
   }
 
   // .country-list__name
