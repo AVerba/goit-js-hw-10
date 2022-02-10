@@ -1,0 +1,19 @@
+.country-list {
+  padding: 15px 0 0 25px;
+
+  &__item:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  // .country-list__img
+
+  &__img {
+  }
+
+  // .country-list__name
+
+  &__name {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}

@@ -8,8 +8,8 @@ export const countryView=(data)=>{
     return `
     <div class="card">
     <div class="card__title">
-        <img class="card__image" src="${svg}" alt="${official}">
-        <span class="card__text">${common}</span>
+        <img class="card__image" src="${svg}" alt="${official}" width="400">
+        <p class="card__text">${common}</p>
     </div>
     <ul class="card-info">
       <li class="card-info__item">Capital: <span class="card-info__text">${capital}</span></li>
